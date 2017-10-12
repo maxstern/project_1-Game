@@ -31,7 +31,7 @@ for (i = 0; i < squares.length; i++) {
 // ---------------------------------------
 */
 
-
+/*
 let rows = {
   a:[0, 1, 2, 3, 4],
   b:[5, 6, 7, 8, 9],
@@ -61,7 +61,7 @@ function mineChecker() {
 };
 
 mineChecker();
-
+*/
 
 
 
