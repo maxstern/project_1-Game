@@ -1,14 +1,24 @@
+
 // store all squares in an array (0 - 24)
 let squares = $('.square');
 
+// define edges
 const allEdges = [0, 1, 2, 3, 4, 9, 14, 19, 24, 23, 22, 21, 20, 15, 10, 5];
 
 let gameState = false;
 let gameRound = 1;
+$('.displayRound').text("Round: " + gameRound)
 
-var currentSquare = setStartSquare();
-var finishPoint = setFinishSquare();
-var mines = setMines(0);
+$('.sidePannel').css("margin", "100px 0px")
+
+let currentSquare = setStartSquare();
+let finishPoint = setFinishSquare();
+let mines = setMines(0);
+
+resetGame();
+
+
+
 
 /*
 // add array index to squares for referencing squares
@@ -22,91 +32,51 @@ for (i = 0; i < squares.length; i++) {
 */
 
 
-// detect key press
-// always running
-// shell code from stackoverflow
-// ---------------------------------------
+let rows = {
+  a:[0, 1, 2, 3, 4],
+  b:[5, 6, 7, 8, 9],
+  c:[10, 11, 12, 13, 14],
+  d:[15, 16, 17, 18, 19],
+  e:[20, 21, 22, 23, 24]
+}
 
+let columns = {
+  a:[0, 5, 10, 15, 20],
+  b:[1, 6, 11, 16, 21],
+  c:[2, 7, 12, 17, 22],
+  d:[3, 8, 13, 18, 23],
+  e:[4, 9, 14, 19, 24]
+}
 
+let example = [1, 6, 9];
+let result = []
 
-$(document).keydown(function(e) {
-  if (gameState === true) {
-    switch(e.which) {
-        case 37: // left
-        keyPress('left');
-        break;
+let abc = ['a', 'b', 'c', 'd', 'e']
 
-        case 38: // up
-        keyPress('up');
-        break;
-
-        case 39: // right
-        keyPress('right');
-        break;
-
-        case 40: // down
-        keyPress('down');
-        break;
-
-        default: return; // exit this handler for other keys
-    }
+function mineChecker() {
+  for (let example in rows) {
+    result.push(example);
   };
-  e.preventDefault(); // prevent the default action (scroll / move caret)
-});
-// -------------------------------
-
-
-//////////////////////////
-// showStartSquare();   //
-// hideStartSquare();   //
-//                      //
-// showFinishSquare();  //
-// hideFinishSquare();  //
-//                      //
-// showMines();         //
-// hideMines();         //
-//////////////////////////
-
-
-// reset game by clicking h1
-$("h1").click(function(){
-    resetGame();
-    gameState = true;
-});
-
-
-// hide mines by pressing space bar
-$(document).keypress(function(e) {
-  if (e.which === 32) {
-    console.log("Button Pushed");
-    hideMines();
-    showStartSquare();
-    showFinishSquare();
-  };
-});
-
-
-function changeAllSquareColor(color) {
-  for (i = 0; i < squares.length; i++) {
-    $(squares[i]).css("background", color)
-  };
+  console.log(result);
 };
+
+mineChecker();
+
+
+
+
 
 
 function resetGame() {
-
-  changeAllSquareColor('pink');
-
+  console.log("Resetting game");
+  mines = [];
+  changeAllSquareColor('#66FCF1');
+  resetSquareBg();
   currentSquare = setStartSquare();
-
   finishPoint = setFinishSquare();
-
   mines = setMines(gameRound);
   showMines();
-  console.log(mines);
 }
-
-
 
 
 
@@ -130,9 +100,16 @@ function setStartSquare() {
 // makes sure it isn't the same as the start square
 function setFinishSquare() {
   while (true) {
-    let finishPoint = (Math.random() * 16);
-    finishPoint = Math.floor(finishPoint);
-    finishPoint = allEdges[finishPoint];
+    let randNum = (Math.random() * 4);
+    randNum = Math.floor(randNum);
+
+    let x = (allEdges.indexOf(currentSquare) + 6 + randNum);
+
+    if (x > 15) {
+      x = Math.abs(x - 15);
+    }
+
+    let finishPoint = allEdges[x];
 
     if (finishPoint !== currentSquare) {
       return finishPoint;
@@ -241,62 +218,28 @@ function keyPress(key) {
       squareBackground();
       break;
   };
-  checkWin();
-  checkLoss();
 };
-// ---------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-// ---------------------------------------
-// ---------------------------------------
-// SET UP FUNCTIONS
-// ---------------------------------------
 // ---------------------------------------
 
 
 // show START point
 // ---------------------------------------
 function showStartSquare() {
-  $(squares[currentSquare]).css("background-color", "blue")
+  $(squares[currentSquare]).css("background-image", "url('images/current.jpg')");
 }
 // ---------------------------------------
-
-// hide START point
-// ---------------------------------------
-function hideStartSquare() {
-  $(squares[currentSquare]).css("background-color", "pink")
-}
-// ---------------------------------------
-
 
 // show finish point
 // ---------------------------------------
 function showFinishSquare() {
-  $(squares[finishPoint]).css("background-color", "red")
+  $(squares[finishPoint]).css("background-image", "url('images/finish.jpg')");
 }
 // ---------------------------------------
-
-// hide finish point
-// ---------------------------------------
-function hideFinishSquare() {
-  $(squares[finishPoint]).css("background-color", "pink")
-}
-// ---------------------------------------
-
 
 // Show mines
 function showMines() {
   for (i = 0; i < mines.length; i++) {
-    $(squares[mines[i]]).css("background-color", "black");
+    $(squares[mines[i]]).css("background-image", "url('images/mine.jpg')");
   };
 };
 // ---------------------------------------
@@ -304,36 +247,15 @@ function showMines() {
 // Hide mines
 function hideMines() {
   for (i = 0; i < mines.length; i++) {
-    $(squares[mines[i]]).css("background-color", "pink")
+    $(squares[mines[i]]).css("background-image", "url('images/mesh.jpg')");
   };
 };
 // ---------------------------------------
 
-
-
-// ---------------------------------------
-// ---------------------------------------
-// ---------------------------------------
-// ---------------------------------------
-
-
-
-
-
-
-
-
-// ---------------------------------------
-// ---------------------------------------
-// GAME FUNCTIONS
-// ---------------------------------------
-// ---------------------------------------
-
-
 // sets background of new square
 // ---------------------------------------
 function squareBackground() {
-  $(squares[currentSquare]).css("background-color", "blue");
+  $(squares[currentSquare]).css("background-image", "url('images/current.jpg')");
 };
 // ---------------------------------------
 
@@ -341,8 +263,26 @@ function squareBackground() {
 // removes background from old square
 // ---------------------------------------
 function resetOldSquare() {
-  $(squares[currentSquare]).css("background-color", "pink");
+  $(squares[currentSquare]).css("background-image", "url('images/mesh.jpg')");
 }
+// ---------------------------------------
+
+// change all the squares to given color
+// ---------------------------------------
+function changeAllSquareColor(color) {
+  for (i = 0; i < squares.length; i++) {
+    $(squares[i]).css("background-color", color)
+  };
+};
+// ---------------------------------------
+
+// resets the square to default background image
+// ---------------------------------------
+function resetSquareBg() {
+  for (i = 0; i < squares.length; i++) {
+    $(squares[i]).css("background-image", "url('images/mesh.jpg')")
+  };
+};
 // ---------------------------------------
 
 
@@ -351,10 +291,14 @@ function resetOldSquare() {
 // ---------------------------------------
 function checkWin() {
   if (currentSquare === finishPoint) {
-    alert("You won!")
+    gameState = false;
+    changeAllSquareColor('green');
     gameRound += 1;
-    console.log("It's " + gameRound);
-    //gameState = false;
+
+    $('.displayRound').text("Round: " + gameRound)
+
+    $('.sidePannel').css("margin", "100px 0px")
+
     resetGame();
   };
 }
@@ -366,17 +310,127 @@ function checkWin() {
 // ---------------------------------------
 function checkLoss() {
   if (mines.includes(currentSquare)) {
-    //gameState = false;
-    changeAllSquareColor('red');
+
+    console.log(currentSquare);
+    $(squares[currentSquare]).css("background-color", "red");
+
+    gameState = false;
+    $('.newHighScore').removeClass("show");
+
+    let highScore = localStorage.getItem('highScore');
+
+    if (gameRound > highScore || highScore === null) {
+      console.log("New high score")
+      localStorage.setItem('highScore', gameRound);
+      highScore = localStorage.getItem('highScore');
+      $('.newHighScore').addClass("show");
+    };
+
+
+
+    $('.finalScore').text("You got to round " + gameRound);
+    $('.highScore').text("The high score is " + highScore);
+
     showMines();
+
+
+
     gameRound = 1;
+
+    setTimeout(function(){
+    $('.gameOverBanner').addClass("show");
+  }, 400);
   };
 }
 // ---------------------------------------
 
 
+
+
+
+// open info page
+$('.information').click(function(){
+  $('.infoBanner').addClass("show");
+  $('.hs').text("High Score: " + localStorage.getItem('highScore'))
+});
+
+// hide info page
+$('.hideInfo').click(function(){
+  $('.infoBanner').removeClass("show");
+});
+
+// play again
+$('.playAgain').click(function(){
+    $('.gameOverBanner').removeClass("show");
+    resetGame();
+    gameState = false;
+    $('.sidePannel').css("margin", "100px 0px")
+});
+
+// hide mines by pressing space bar
+$(document).keypress(function(e) {
+  if (e.which === 32) {
+    gameState = true;
+    $('.sidePannel').css("margin", "100px -80px")
+    hideMines();
+    showStartSquare();
+    showFinishSquare();
+  };
+});
+
+// hide mines by pressing button
+$('.playButton').click(function(e) {
+  e.stopPropagation();
+    gameState = true;
+    $('.sidePannel').css("margin", "100px -80px")
+    hideMines();
+    showStartSquare();
+    showFinishSquare();
+});
+
+// reset highscore
+$('.resetHighScore').click(function() {
+  localStorage.setItem('highScore', 0);
+  $('.hs').text("High Score: " + localStorage.getItem('highScore'))
+});
+
+// restart games
+$('.resetGame').click(function(event) {
+  gameRound = 1;
+  $('.displayRound').text("Round: " + gameRound)
+  resetGame();
+});
+
+
+// detect key press
+// always running
+// shell code from stackoverflow
 // ---------------------------------------
-// ---------------------------------------
-// ---------------------------------------
-// ---------------------------------------
+
+$(document).keydown(function(e) {
+  if (gameState === true) {
+    switch(e.which) {
+        case 37: // left
+        keyPress('left');
+        break;
+
+        case 38: // up
+        keyPress('up');
+        break;
+
+        case 39: // right
+        keyPress('right');
+        break;
+
+        case 40: // down
+        keyPress('down');
+        break;
+
+        default: return; // exit this handler for other keys
+    }
+  checkWin();
+  checkLoss();
+  };
+});
+// -------------------------------
 

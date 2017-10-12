@@ -1,43 +1,90 @@
-/*
+html {
+  font-family: 'Quicksand', sans-serif;
+  min-width: 650px;
+}
 
-#3CC47C = light green
-#1E392A = dark green
-#E9C893 = beige
-#828081 = grey
-
-
-*/
 
 body {
- background-color: #E9C893;
+ background-image: url("images/camouflageTexture.jpg");
+ background-color: #0B0C10;
+ background-blend-mode: multiply;
+ background-repeat: repeat-x;
+ background-position: cover;
+ cursor: default;
+ overflow: hidden;
 }
+
+
+hr {
+  height: 2px;
+  border-radius: 2px;
+  border: none;
+  width: 40%;
+  background-color: #C5C6C7;
+  margin: 28px auto;
+}
+
 
 
 .header {
-  background-color: #1E392A;
-}
-
-h1 {
-  font-family: 'Bungee', cursive;
+  width: 100%;
+  height: 100px;
+  background-image: url('images/camouflageTexture.jpg');
+  background-color: #1F2833;
+  background-blend-mode: multiply;
   display: block;
   text-align: center;
-  padding: 20px;
-  font-size: 48px;
-  color: #E9C893;
-
-
 }
 
+.header h1 {
+  font-family: 'Bungee', cursive;
+  display: inline-block;
+  width: 400px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 48px;
+  color: #66FCF1;
+}
+
+
+.header h2 {
+  background-color: #1F2833;
+  display: inline;
+  text-align: center;
+
+  width: 150px;
+  margin: 25px 20px 20px 40px;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 22px;
+  color: #C5C6C7;
+  transition-duration: 0.4s;
+}
+
+.header .information {
+  float: left;
+}
+
+.header .displayRound {
+  float: right;
+}
+
+.header h2:hover {
+  background-color: #45A29E;
+}
 
 
 
 .board {
+  float: left;
   width: 650px;
   height: 650px;
-  display: block;
+  display: inline-block;
   text-align: center;
   padding: 0px 30px;
-  margin: 10px auto;
+  margin: 10px 30px 10px 5px;
+
 }
 
 .row {
@@ -49,21 +96,270 @@ h1 {
 .square {
   width: 120px;
   height: 120px;
-  background-color: #3CC47C;
   display: inline-block;
   margin: 3.2px;
   text-align: center;
   transition: 0.2s linear;
-  border-radius: 2px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, .6);
 
-  background-repeat: no-repeat;
+
+  background-image: url('images/mesh.jpg');
+  background-size: 100%;
+  background-color: #C5C6C7;
+  background-blend-mode: multiply;
+
   background-size: 120px 120px;
+  background-repeat: no-repeat;
 }
 
 
-button {
-  margin: auto;
+.sidePannel {
   display: block;
-  opacity: 100;
-  transition: 4s;
+  height: 400px;
+  width: 80px;
+  background-color: #1F2833;
+  float: right;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+  margin: 100px -80px;
+  transition-duration: 0.6s;
 }
+
+.sidePannel h2 {
+  color: #C5C6C7;
+  font-size: 35px;
+  text-align: center;
+  margin: 10px auto;
+  line-height: 75px;
+}
+.sidePannel:hover {
+  background-color: #45A29E;
+}
+
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+
+
+
+
+.gameOverBanner h3 {
+  font-size: 50px;
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding-top: 50px;
+  color: #C5C6C7;
+}
+
+.gameOverBanner h4 {
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  margin: 10px auto;
+  color: #C5C6C7;
+}
+
+.newHighScore {
+  display: none;
+}
+.newHighScore.show {
+  display: block;
+  width: 140px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  margin: 8px auto;
+  color: #b20000;
+  background-color: #C5C6C7;
+  border-radius: 5px;
+  animation: blinker 0.6s linear infinite;
+}
+@keyframes blinker {
+  0% {opacity: 0;}
+  39% { opacity: 0;}
+  40% {opacity: 1;}
+  100% {opacity: 1;}
+}
+
+.gameOverBanner h6 {
+  width: 100px;
+  height: 20px;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  margin: 28px auto;
+  background-color: #1F2833;
+  border-color: #66FCF1;
+  border-style: solid;
+  border-width: 0.5px;
+  color: #C5C6C7;
+  border-radius: 5px;
+
+  transition: 0.2s;
+}
+.gameOverBanner h6:hover {
+  background-color: #45A29E;
+  max-width: 100px;
+  transition: 0.2s;
+}
+
+.gameOverBanner {
+  margin-top: 100px;
+  display: none;
+  height: 100vh;
+  width: 100%;
+  background-color: red;
+  background-image: url('images/paperTexture.jpg');
+  background-blend-mode: multiply;
+  background-position: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.gameOverBanner.show {
+  position: absolute;
+  display: block;
+  animation-duration: 1s;
+  animation-name: slideIn;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes slideIn {
+  0% {height: 0; width: 0; opacity: 0;}
+  15% {opacity: 1;}
+  100% {height: 100vh; width: 100%; opacity: 1;}
+}
+
+
+
+.infoBanner {
+  margin-top: 100px;
+  height: 100vh;
+  width: 100%;
+  background-color: #C5C6C7;
+  background-image: url('images/paperTexture.jpg');
+  background-blend-mode: multiply;
+  background-position: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: none;
+}
+
+.infoBanner.show {
+  display: block;
+  animation-duration: 1s;
+  animation-name: slideIn;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes slideIn {
+  0% {height: 0; width: 0; opacity: 0;}
+  15% {opacity: 1;}
+  100% {height: 100vh; width: 100%; opacity: 1;}
+}
+
+.infoBanner h3 {
+  font-size: 40px;
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding-top: 50px;
+  color: #C5C6C7;
+}
+
+
+.infoBanner .hs {
+  width: 200px;
+  margin-bottom: 5px;
+}
+
+.infoBanner .resetHighScore {
+  margin-top: 0px;
+}
+
+.infoBanner .resetGame {
+  width: 200px;
+}
+
+.infoBanner p {
+  font-size: 16px;
+  display: block;
+  text-align: center;
+  margin: 10px auto;
+  color: #C5C6C7;
+}
+
+
+.infoBanner h6 {
+  width: 100px;
+  height: 20px;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  margin: 28px auto;
+  background-color: #1F2833;
+  border-color: #66FCF1;
+  border-style: solid;
+  border-width: 0.5px;
+  color: #C5C6C7;
+  border-radius: 5px;
+
+  transition: 0.2s;
+}
+.infoBanner h6:hover {
+  background-color: #45A29E;
+  transition: 0.2s;
+}
+
+
+
+
+
+@media (max-width: 880px) {
+  .header {
+    height: 12vh;
+  }
+  .header h1 {
+    font-size: 30px;
+    width: 100px;
+  }
+  .header h2 {
+    font-size: 18px;
+  }
+  .square {
+  width: 100px;
+  height: 100px;
+  margin: 1px;
+  background-size: 100%;
+  }
+  .board {
+  width: 540px;
+  height: 540px;
+  padding: 0px 10px;
+  }
+  .sidePannel {
+  height: 220px;
+  width: 50px;
+  margin: 100px -80px;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+  }
+  .sidePannel h2 {
+  font-size: 18px;
+  line-height: 40px;
+  }
+}
+

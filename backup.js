@@ -73,7 +73,7 @@ var mines = setMines(0);
 function resetGame() {
 
   for (i = 0; i < squares.length; i++) {
-  $(squares[i]).css("background", "pink")
+  $(squares[i]).css("background", "#C5C6C7")
   };
 
   currentSquare = setStartSquare();
@@ -245,7 +245,7 @@ function keyPress(key) {
 // show START point
 // ---------------------------------------
 function showStartSquare() {
-  $(squares[currentSquare]).css("background-color", "blue")
+  $(squares[currentSquare]).css("background-color", "#66FCF1")
 }
 // ---------------------------------------
 
@@ -312,7 +312,7 @@ function hideMines() {
 // sets background of new square
 // ---------------------------------------
 function squareBackground() {
-  $(squares[currentSquare]).css("background-color", "blue");
+  $(squares[currentSquare]).css("background-color", "#66FCF1");
 };
 // ---------------------------------------
 

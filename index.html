@@ -8,66 +8,112 @@
   <link rel="stylesheet" href="style.css">
 
   <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 
 
-<body>
+<body class = body>
 
 
 <div class = header>
-  <header><h1>MINE FIELD</h1></header>
+  <header>
+    <h2 class=information>MENU</h2>
+    <h1>MINE FIELD</h1>
+    <h2 class=displayRound>SCORE</h2>
+  </header>
+</div>
+
+<div class = mainBox>
+
+  <div class = 'board clearfix'>
+
+    <div class = row>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+    </div>
+
+    <div class = row>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+    </div>
+
+    <div class = row>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+    </div>
+
+    <div class = row>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+    </div>
+
+    <div class = row>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+      <div class = square></div>
+    </div>
+  </div>
+
 </div>
 
 
-<div class = board>
 
-  <div class = row>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-  </div>
-
-  <div class = row>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-  </div>
-
-  <div class = row>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-  </div>
-
-  <div class = row>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-  </div>
-
-  <div class = row>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-    <div class = square></div>
-  </div>
-
+<div class='sidePannel'>
+  <h2 class=playButton>R<br>E<br>A<br>D<br>Y</h2>
 </div>
 
-<button>Play Again</button>
 
+<div class = 'gameOverBanner'>
+ <h3>Game Over</h3>
+ <hr>
+ <h4 class=finalScore>Score</h4>
+ <h5 class=newHighScore>NEW HIGH SCORE!</h5>
+ <h4 class=highScore>High Score</h4>
+ <hr>
+ <h6 class=playAgain>Play Again</h6>
+</div>
+
+
+
+
+<div class = 'infoBanner'>
+ <h3>Menu</h3>
+ <hr>
+
+ <p>
+Mine Field will test your memory. <br><br>
+You must navigate the horse to it's home without riding it into any mines<br><br>
+The mines will be visible, and you must memorize where they are. When you<br>
+are ready, press 'READY' (or the space bar), and the mines will become<br>
+invisible. Navigate the horse with the arrow keys.<br><br>
+The number of mines will keep increasing until you lose. Good luck!
+ </p>
+
+ <hr>
+ <h6 class=hideInfo>Hide</h6>
+ <h6 class=hs>HighScore</h6>
+ <h6 class=resetHighScore>Reset</h6>
+ <h6 class=resetGame>Reset Game</h6>
+ <hr>
+ <p>Made by Max Stern, 2017</p>
+</div>
 
 
 
